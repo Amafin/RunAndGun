@@ -29,6 +29,7 @@ public class Robot : MonoBehaviour
         if (rb == null)
         {
             rb = GetComponent<Rigidbody2D>();
+            anim = GetComponent<Animator>();
         }
     }
 
@@ -42,6 +43,12 @@ public class Robot : MonoBehaviour
 
         // Jump only if space is pressed AND the robot is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        if (anim != null)
+        {
+            anim.SetBool("IsGrounded", isGrounded);
+            anim.SetFloat("Speed", Mathf.Abs(horizontalInput));
+        }
 
         horizontalInput = 0f;
         var keyboard = Keyboard.current;
@@ -78,6 +85,11 @@ public class Robot : MonoBehaviour
         else if (horizontalInput < 0)
         {
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+
+        if (anim != null)
+        {
+            anim.SetFloat("Speed", Mathf.Abs(horizontalInput));
         }
     }
 
