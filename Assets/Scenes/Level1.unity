@@ -510,7 +510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 904907077}
   - component: {fileID: 904907076}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: background-day_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 1134246322}
   - component: {fileID: 1134246323}
   - component: {fileID: 1134246324}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Robot
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -800,6 +800,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  bulletPrefab: {fileID: 451807955138903289, guid: eb3a438e35667f14b9fdf984d95939ff, type: 3}
 --- !u!1 &1403555193
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +810,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1403555194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
