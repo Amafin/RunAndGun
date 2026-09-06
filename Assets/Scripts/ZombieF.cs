@@ -6,6 +6,7 @@ public class ZombieF : MonoBehaviour
     [SerializeField] private float speed = 1.5f;
     [SerializeField] private float attackCooldown = 1.2f;
     [SerializeField] private float deathDelay = 2.5f;
+    private bool isAttackingAnim = false;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -45,7 +46,7 @@ public class ZombieF : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isDead || player == null) return;
+        if (isDead || player == null || isAttackingAnim) return;
 
         float dir = player.position.x > transform.position.x ? 1f : -1f;
 
@@ -71,6 +72,8 @@ public class ZombieF : MonoBehaviour
 
                 if (anim != null) anim.SetTrigger("isAttacking");
 
+                StartCoroutine(AttackRoutine());
+
                 Robot robot = collision.gameObject.GetComponent<Robot>();
                 if (robot != null)
                 {
@@ -92,5 +95,16 @@ public class ZombieF : MonoBehaviour
         if (anim != null) anim.SetBool("isDead", true);
 
         Destroy(gameObject, deathDelay);
+    }
+
+    private System.Collections.IEnumerator AttackRoutine()
+    {
+        isAttackingAnim = true;
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+
+        // Ajuste ce temps à la durée de ton clip d'attaque (ex: 0.6s)
+        yield return new WaitForSeconds(0.6f);
+
+        isAttackingAnim = false;
     }
 }

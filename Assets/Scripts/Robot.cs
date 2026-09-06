@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Robot : MonoBehaviour
 {
@@ -67,9 +68,18 @@ public class Robot : MonoBehaviour
 
     private void Die()
     {
+        if (isDead) return;
         isDead = true;
+
         rb.linearVelocity = Vector2.zero;
-        if (anim != null) anim.SetBool("isDead", true);
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
+        if (anim != null)
+        {
+            anim.SetBool("IsDead", true);
+        }
+
+        StartCoroutine(GameOverSequence());
     }
 
     void Update()
@@ -188,5 +198,13 @@ public class Robot : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
+    }
+
+    private IEnumerator GameOverSequence()
+    {
+        yield return new WaitForSecondsRealtime(1.2f);
+
+        Time.timeScale = 0f;
+        Debug.Log("Game Over !");
     }
 }
