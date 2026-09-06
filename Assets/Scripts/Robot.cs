@@ -7,7 +7,7 @@ public class Robot : MonoBehaviour
 {
     // Movement
     private float moveSpeed = 7f;
-    private float jumpForce = 6f;
+    private float jumpForce = 6.5f;
 
     // Health
     public Slider healthSlider;
