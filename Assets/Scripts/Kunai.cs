@@ -36,7 +36,7 @@ public class Kunai : MonoBehaviour
             return;
         }
 
-        if (collision.CompareTag("Ground") || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.CompareTag("Ground") || collision.gameObject.layer == LayerMask.NameToLayer("groundLayer"))
         {
             Destroy(gameObject);
         }

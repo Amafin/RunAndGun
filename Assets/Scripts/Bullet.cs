@@ -12,6 +12,23 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private bool IsInMainCameraView()
+    {
+        if (Camera.main == null) return true;
+
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        return viewPos.x >= -0.1f && viewPos.x <= 1.1f && viewPos.y >= -0.1f && viewPos.y <= 1.1f;
+    }
+
+    void Update()
+    {
+        if (!IsInMainCameraView())
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         Destroy(gameObject, lifeTime);
@@ -47,7 +64,7 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        if (collision.CompareTag("Ground") || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.CompareTag("Ground") || collision.gameObject.layer == LayerMask.NameToLayer("groundLayer"))
         {
             Destroy(gameObject);
         }
