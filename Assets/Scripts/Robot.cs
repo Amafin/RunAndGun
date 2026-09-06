@@ -68,12 +68,8 @@ public class Robot : MonoBehaviour
     private void Die()
     {
         isDead = true;
-        Debug.Log("Robot est mort !");
-
         rb.linearVelocity = Vector2.zero;
-
-        // Si tu as une animation de mort dans l'Animator :
-        // anim.SetTrigger("Die");
+        Debug.Log("Robot est mort !");
     }
 
     void Update()

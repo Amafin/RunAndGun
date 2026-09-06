@@ -30,6 +30,18 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Player")) return;
 
-        Destroy(gameObject);
+        Zombie zombie = collision.GetComponent<Zombie>();
+        if (zombie != null)
+        {
+            Debug.Log("Zombie touché !");
+            zombie.Die();
+            Destroy(gameObject);
+            return;
+        }
+
+        if (collision.CompareTag("Ground") || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -901,7 +901,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1134246323
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1290,6 +1290,63 @@ RectTransform:
   m_AnchoredPosition: {x: -7.5, y: 0}
   m_SizeDelta: {x: -15, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &4299561919604796336
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3978406373442323577, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978406373442323577, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978406373442323577, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978406373442323577, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978406373442323577, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978406373442323577, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978406373442323577, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978406373442323577, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978406373442323577, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978406373442323577, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881664914633269386, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
+      propertyPath: m_Name
+      value: ZombieF
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84c5e5c82ba03874b9b4fa2793a7de54, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1301,3 +1358,4 @@ SceneRoots:
   - {fileID: 904907077}
   - {fileID: 1155838320}
   - {fileID: 1555974574}
+  - {fileID: 4299561919604796336}
