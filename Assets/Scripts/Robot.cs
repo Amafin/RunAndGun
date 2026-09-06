@@ -1,11 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Robot : MonoBehaviour
 {
     // Movement
     private float moveSpeed = 7f;
     private float jumpForce = 6f;
+
+    // Health
+    public Slider healthSlider;
+    private int maxHealth = 3;
+    private int currentHealth;
 
     // Ground check
     public Transform groundCheck;
@@ -31,6 +37,43 @@ public class Robot : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        currentHealth = maxHealth;
+        if (healthSlider != null)
+        {
+            healthSlider.minValue = 0;
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = currentHealth;
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (isDead) return;
+
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (healthSlider != null)
+        {
+            healthSlider.value = currentHealth;
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        isDead = true;
+        Debug.Log("Robot est mort !");
+
+        rb.linearVelocity = Vector2.zero;
+
+        // Si tu as une animation de mort dans l'Animator :
+        // anim.SetTrigger("Die");
     }
 
     void Update()
