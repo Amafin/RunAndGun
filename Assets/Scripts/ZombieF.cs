@@ -15,7 +15,15 @@ public class ZombieF : MonoBehaviour
 
     private bool isDead = false;
     private float lastAttackTime = -999f;
-    private bool isActive = false;
+
+    private bool IsInMainCameraView()
+    {
+        if (Camera.main == null) return false;
+
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        return viewPos.z > 0 && viewPos.x >= 0f && viewPos.x <= 1f && viewPos.y >= 0f && viewPos.y <= 1f;
+    }
 
     void Start()
     {
@@ -30,19 +38,9 @@ public class ZombieF : MonoBehaviour
         }
     }
 
-    private void OnBecameVisible()
-    {
-        isActive = true;
-    }
-
-    private void OnBecameInvisible()
-    {
-        isActive = false;
-    }
-
     void LateUpdate()
     {
-        if (isDead || player == null || isAttackingAnim || !isActive) return;
+        if (isDead || player == null || isAttackingAnim) return;
 
         Vector3 scale = transform.localScale;
         if (player.position.x > transform.position.x)
@@ -57,7 +55,11 @@ public class ZombieF : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isDead || player == null || isAttackingAnim) return;
+        if (isDead || player == null || isAttackingAnim || !IsInMainCameraView())
+        {
+            if (!isDead) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            return;
+        }
 
         float dir = player.position.x > transform.position.x ? 1f : -1f;
 

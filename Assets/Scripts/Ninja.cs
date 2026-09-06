@@ -17,7 +17,15 @@ public class Ninja : MonoBehaviour
     private float shootTimer = 0f;
 
     private SpriteRenderer sr;
-    private bool isActive = false;
+
+    private bool IsInMainCameraView()
+    {
+        if (Camera.main == null) return false;
+
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        return viewPos.z > 0 && viewPos.x >= 0f && viewPos.x <= 1f && viewPos.y >= 0f && viewPos.y <= 1f;
+    }
 
     void Start()
     {
@@ -34,20 +42,9 @@ public class Ninja : MonoBehaviour
         shootTimer = fireRate;
     }
 
-    private void OnBecameVisible()
-    {
-        isActive = true;
-    }
-
-    private void OnBecameInvisible()
-    {
-        isActive = false;
-        if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-    }
-
     void LateUpdate()
     {
-        if (isDead || player == null || !isActive) return;
+        if (isDead || player == null) return;
 
         Vector3 scale = transform.localScale;
 
@@ -63,7 +60,7 @@ public class Ninja : MonoBehaviour
 
     void Update()
     {
-        if (isDead || player == null) return;
+        if (isDead || player == null || !IsInMainCameraView()) return;
 
         shootTimer -= Time.deltaTime;
         if (shootTimer <= 0f)

@@ -789,9 +789,10 @@ GameObject:
   - component: {fileID: 755208778}
   - component: {fileID: 755208777}
   - component: {fileID: 755208779}
+  - component: {fileID: 755208780}
   m_Layer: 0
   m_Name: door
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -917,6 +918,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.14, y: 3.56}
   m_EdgeRadius: 0
+--- !u!114 &755208780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755208776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f78f366c54d1a4f81dfa0da2109cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NextLevel
+  nextSceneName: Level2
 --- !u!1 &806808982
 GameObject:
   m_ObjectHideFlags: 0
