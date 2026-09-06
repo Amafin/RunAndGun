@@ -17,6 +17,7 @@ public class Ninja : MonoBehaviour
     private float shootTimer = 0f;
 
     private SpriteRenderer sr;
+    private bool isActive = false;
 
     void Start()
     {
@@ -33,9 +34,20 @@ public class Ninja : MonoBehaviour
         shootTimer = fireRate;
     }
 
+    private void OnBecameVisible()
+    {
+        isActive = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isActive = false;
+        if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+    }
+
     void LateUpdate()
     {
-        if (isDead || player == null) return;
+        if (isDead || player == null || !isActive) return;
 
         Vector3 scale = transform.localScale;
 

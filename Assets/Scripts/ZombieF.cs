@@ -15,6 +15,7 @@ public class ZombieF : MonoBehaviour
 
     private bool isDead = false;
     private float lastAttackTime = -999f;
+    private bool isActive = false;
 
     void Start()
     {
@@ -29,9 +30,19 @@ public class ZombieF : MonoBehaviour
         }
     }
 
+    private void OnBecameVisible()
+    {
+        isActive = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isActive = false;
+    }
+
     void LateUpdate()
     {
-        if (isDead || player == null) return;
+        if (isDead || player == null || isAttackingAnim || !isActive) return;
 
         Vector3 scale = transform.localScale;
         if (player.position.x > transform.position.x)
