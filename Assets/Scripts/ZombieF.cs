@@ -1,27 +1,24 @@
 using UnityEngine;
 
-public class Zombie : MonoBehaviour
+public class ZombieF : MonoBehaviour
 {
     [Header("Settings")]
-    private float speed = 1.5f;
-    private float attackCooldown = 1.2f;
-    private float deathDelay = 2.5f;
+    [SerializeField] private float speed = 1.5f;
+    [SerializeField] private float attackCooldown = 1.2f;
+    [SerializeField] private float deathDelay = 2.5f;
 
     private Transform player;
     private Rigidbody2D rb;
     private Animator anim;
     private Collider2D col;
 
-
     private bool isDead = false;
     private float lastAttackTime = -999f;
-    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -29,23 +26,20 @@ public class Zombie : MonoBehaviour
         {
             player = playerObj.transform;
         }
-        else
-        {
-            Debug.LogError("Attention : Aucun GameObject avec le tag 'Player' n'a été trouvé !");
-        }
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (isDead || player == null) return;
 
+        Vector3 scale = transform.localScale;
         if (player.position.x > transform.position.x)
         {
-            spriteRenderer.flipX = true;
+            transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
         }
         else
         {
-            spriteRenderer.flipX = false;
+            transform.localScale = new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z);
         }
     }
 
@@ -53,11 +47,11 @@ public class Zombie : MonoBehaviour
     {
         if (isDead || player == null) return;
 
-        float direction = player.position.x > transform.position.x ? 1f : -1f;
+        float dir = player.position.x > transform.position.x ? 1f : -1f;
 
         if (Mathf.Abs(player.position.x - transform.position.x) > 0.8f)
         {
-            rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
         }
         else
         {

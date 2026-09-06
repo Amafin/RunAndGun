@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 15f;
-    [SerializeField] private float lifeTime = 3f;
+    private float speed = 15f;
+    private float lifeTime = 3f;
 
     private Rigidbody2D rb;
 
@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Player")) return;
 
-        Zombie zombie = collision.GetComponent<Zombie>();
+        ZombieF zombie = collision.GetComponent<ZombieF>();
         if (zombie != null)
         {
             Debug.Log("Zombie touché !");

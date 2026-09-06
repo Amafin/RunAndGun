@@ -69,7 +69,7 @@ public class Robot : MonoBehaviour
     {
         isDead = true;
         rb.linearVelocity = Vector2.zero;
-        Debug.Log("Robot est mort !");
+        if (anim != null) anim.SetBool("isDead", true);
     }
 
     void Update()
