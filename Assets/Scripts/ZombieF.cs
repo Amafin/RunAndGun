@@ -70,8 +70,6 @@ public class ZombieF : MonoBehaviour
             {
                 lastAttackTime = Time.time;
 
-                if (anim != null) anim.SetTrigger("isAttacking");
-
                 StartCoroutine(AttackRoutine());
 
                 Robot robot = collision.gameObject.GetComponent<Robot>();
@@ -88,11 +86,16 @@ public class ZombieF : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
+        StopAllCoroutines();
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
         if (col != null) col.enabled = false;
 
-        if (anim != null) anim.SetBool("isDead", true);
+        if (anim != null)
+        {
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("isDead", true);
+        }
 
         Destroy(gameObject, deathDelay);
     }
@@ -102,8 +105,13 @@ public class ZombieF : MonoBehaviour
         isAttackingAnim = true;
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
 
-        // Ajuste ce temps à la durée de ton clip d'attaque (ex: 0.6s)
+        // Active l'animation
+        if (anim != null) anim.SetBool("isAttacking", true);
+
         yield return new WaitForSeconds(0.6f);
+
+        // Éteint l'animation pour revenir à Idle
+        if (anim != null) anim.SetBool("isAttacking", false);
 
         isAttackingAnim = false;
     }
