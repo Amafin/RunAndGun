@@ -5,8 +5,6 @@
 - Ne peut sauter qu'en étant sur le sol
 - Animation de pause du robot
 - Animation de tir dans le sens du tir (pour saut, course et pause)
-
-## À faire : 
 - Animation de mort
 - Ajout ennemi loin
 - Ajout ennemi mêlé
