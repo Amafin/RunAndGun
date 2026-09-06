@@ -39,6 +39,14 @@ public class Bullet : MonoBehaviour
             return;
         }
 
+        Ninja ninja = collision.GetComponent<Ninja>();
+        if (ninja != null)
+        {
+            ninja.Die();
+            Destroy(gameObject);
+            return;
+        }
+
         if (collision.CompareTag("Ground") || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Destroy(gameObject);

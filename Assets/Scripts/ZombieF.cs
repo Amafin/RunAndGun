@@ -87,9 +87,15 @@ public class ZombieF : MonoBehaviour
         isDead = true;
 
         StopAllCoroutines();
-        rb.linearVelocity = Vector2.zero;
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        if (col != null) col.enabled = false;
+
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+
+        BoxCollider2D box = GetComponent<BoxCollider2D>();
+        if (box != null)
+        {
+            box.size = new Vector2(box.size.x, box.size.y * 0.3f);
+            box.offset = new Vector2(box.offset.x, box.offset.y - 0.5f);
+        }
 
         if (anim != null)
         {
